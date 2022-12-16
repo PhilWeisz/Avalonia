@@ -43,7 +43,7 @@
 
 -(bool) isDialog
 {
-    return _parent->IsDialog();
+    return _parent->IsModal();
 }
 
 -(double) getExtendedTitleBarHeight
