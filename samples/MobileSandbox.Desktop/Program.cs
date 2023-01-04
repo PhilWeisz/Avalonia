@@ -16,6 +16,13 @@ namespace MobileSandbox.Desktop
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
+            .AfterSetup(builder =>
+            {
+                builder.Instance!.AttachDevTools(new Avalonia.Diagnostics.DevToolsOptions()
+                {
+                    StartupScreenIndex = 1,
+                });
+            })
                 .LogToTrace();
     }
 }

@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Width="400">
+      <Pivot>
+        <PivotItem Header="Arch">
+          <Border Background="AntiqueWhite" Height="100">
+            <TextBlock Text="Content" Foreground="Black" FontSize="20"/>
+          </Border>
+        </PivotItem>
+        <PivotItem Header="Disabled" IsEnabled="False" >
+          <Button>Disabled</Button>
+        </PivotItem>
+        <PivotItem Header="Leaf">
+          <Border Background="Green"
+                  Height="100" >
+            <TextBlock>Label</TextBlock>
+          </Border>
+        </PivotItem>
+      </Pivot>
+    </Border>
+  </Design.PreviewWith>
+
+  <Thickness x:Key="PivotTopPlacementItemMargin">0 0 0 2</Thickness>
+
+  <ControlTheme x:Key="{x:Type Pivot}" TargetType="Pivot">
+    <Setter Property="Padding" Value="{DynamicResource PivotMargin}" />
+    <Setter Property="Background" Value="{DynamicResource PivotBackground}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Background="{TemplateBinding Background}"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                Name="PART_Border">
+          <Border.GestureRecognizers>
+            <ScrollGestureRecognizer CanHorizontallyScroll="True" />
+          </Border.GestureRecognizers>
+          <DockPanel>
+            <ContentControl>
+              <Grid>
+                <PivotHeader Name="PART_Header"
+                             ItemTemplate="{TemplateBinding HeaderTemplate}"
+                             DisplayMemberBinding="{TemplateBinding DisplayMemberBinding}"
+                             Items="{TemplateBinding Items}"/>
+              </Grid>
+            </ContentControl>
+            <ItemsPresenter Name="PART_PivotItemsPresenter"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            Margin="{TemplateBinding Padding}"/>
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[PivotHeaderPlacement=Top] /template/ PivotHeader#PART_Header">
+      <Setter Property="Margin" Value="{DynamicResource PivotTopPlacementItemMargin}" />
+    </Style>
+    <Style Selector="^[PivotHeaderPlacement=Top] /template/ DockPanel ContentControl">
+      <Setter Property="DockPanel.Dock" Value="Top" />
+    </Style>
+    <Style Selector="^[PivotHeaderPlacement=Bottom] /template/ DockPanel ContentControl">
+      <Setter Property="DockPanel.Dock" Value="Bottom" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

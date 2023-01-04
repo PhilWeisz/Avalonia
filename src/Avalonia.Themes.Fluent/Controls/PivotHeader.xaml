@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <PivotHeader>
+        <PivotHeaderItem>Item 1</PivotHeaderItem>
+        <PivotHeaderItem>Item 2</PivotHeaderItem>
+        <PivotHeaderItem IsEnabled="False">Disabled</PivotHeaderItem>
+      </PivotHeader>
+    </Border>
+  </Design.PreviewWith>
+
+  <ControlTheme x:Key="{x:Type PivotHeader}" TargetType="PivotHeader">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <WrapPanel />
+      </ItemsPanelTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>
