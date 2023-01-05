@@ -10,7 +10,7 @@ namespace Avalonia.Input
 
         public static int GetNextFreeId() => _nextId++;
 
-        internal ScrollGestureEventArgs(int id, Vector delta) : base(Gestures.ScrollGestureEvent)
+        public ScrollGestureEventArgs(int id, Vector delta) : base(Gestures.ScrollGestureEvent)
         {
             Id = id;
             Delta = delta;
@@ -21,7 +21,7 @@ namespace Avalonia.Input
     {
         public int Id { get; }
 
-        internal ScrollGestureEndedEventArgs(int id) : base(Gestures.ScrollGestureEndedEvent)
+        public ScrollGestureEndedEventArgs(int id) : base(Gestures.ScrollGestureEndedEvent)
         {
             Id = id;
         }
