@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
+using Avalonia.Reactive;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Utilities;
@@ -501,7 +499,7 @@ namespace Avalonia.Controls.Presenters
 
             if (e.OldValue != null)
             {
-                Offset = default(Vector);
+                Offset = default;
             }
         }
 
@@ -543,7 +541,7 @@ namespace Avalonia.Controls.Presenters
             if (logicalScroll != scrollable.IsLogicalScrollEnabled)
             {
                 UpdateScrollableSubscription(Child);
-                Offset = default(Vector);
+                Offset = default;
                 InvalidateMeasure();
             }
             else if (scrollable.IsLogicalScrollEnabled)
