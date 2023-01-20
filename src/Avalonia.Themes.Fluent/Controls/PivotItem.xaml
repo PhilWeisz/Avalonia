@@ -10,8 +10,6 @@
   </Design.PreviewWith>
 
   <ControlTheme x:Key="{x:Type PivotItem}" TargetType="PivotItem">
-    <Setter Property="IsVisible" Value="False"/>
-    <Setter Property="Opacity" Value="0"/>
     <Setter Property="Template">
       <ControlTemplate>
             <ContentPresenter                
@@ -25,16 +23,5 @@
                 FontWeight="{TemplateBinding FontWeight}" />
       </ControlTemplate>
     </Setter>
-
-    <!--  Selected state  -->
-    <Style Selector="^:selected">
-      <Setter Property="IsVisible" Value="True" />
-      <Setter Property="Transitions">
-        <Transitions>
-          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />          
-        </Transitions>
-      </Setter>
-      <Setter Property="Opacity" Value="1" />
-    </Style>
   </ControlTheme>
 </ResourceDictionary>

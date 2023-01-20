@@ -33,8 +33,7 @@
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Background="{TemplateBinding Background}"
                 HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                Name="PART_Border">
+                VerticalAlignment="{TemplateBinding VerticalAlignment}">
           <Border.GestureRecognizers>
             <ScrollGestureRecognizer CanHorizontallyScroll="True" />
           </Border.GestureRecognizers>
@@ -43,13 +42,22 @@
               <Grid>
                 <PivotHeader Name="PART_Header"
                              ItemTemplate="{TemplateBinding HeaderTemplate}"
-                             DisplayMemberBinding="{TemplateBinding DisplayMemberBinding}"
-                             Items="{TemplateBinding Items}"/>
+                             DisplayMemberBinding="{TemplateBinding DisplayMemberBinding}"/>
               </Grid>
             </ContentControl>
-            <ItemsPresenter Name="PART_PivotItemsPresenter"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            Margin="{TemplateBinding Padding}"/>
+            <Border Name="PART_Border"
+                    Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+              <ScrollViewer Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Disabled"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                <ItemsPresenter Name="PART_ItemsPresenter"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"/>                
+              </ScrollViewer>
+            </Border>
           </DockPanel>
         </Border>
       </ControlTemplate>

@@ -16,6 +16,10 @@ namespace MobileSandbox.Desktop
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
+            .With(new Win32PlatformOptions()
+            {
+                UseCompositor = true,
+            })
             .AfterSetup(builder =>
             {
                 builder.Instance!.AttachDevTools(new Avalonia.Diagnostics.DevToolsOptions()

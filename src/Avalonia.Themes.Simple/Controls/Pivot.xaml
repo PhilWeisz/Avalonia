@@ -11,8 +11,7 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="{TemplateBinding CornerRadius}"
-                Name="PART_Border">
+                CornerRadius="{TemplateBinding CornerRadius}">
           <Border.GestureRecognizers>
             <ScrollGestureRecognizer CanHorizontallyScroll="True" />
           </Border.GestureRecognizers>
@@ -21,13 +20,16 @@
               <Grid>
                 <PivotHeader Name="PART_Header"
                              ItemTemplate="{TemplateBinding HeaderTemplate}"
-                             DisplayMemberBinding="{TemplateBinding DisplayMemberBinding}"
-                             Items="{TemplateBinding Items}"/>
+                             DisplayMemberBinding="{TemplateBinding DisplayMemberBinding}"/>
               </Grid>
             </ContentControl>
-            <ItemsPresenter Name="PART_PivotItemsPresenter"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            Margin="{TemplateBinding Padding}"/>
+            <Border Name="PART_Border"
+                    Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+              <ItemsPresenter Name="PART_PivotItemsPresenter"
+                              ItemsPanel="{TemplateBinding ItemsPanel}"/>              
+            </Border>
           </DockPanel>
         </Border>
       </ControlTemplate>

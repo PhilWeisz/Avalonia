@@ -21,20 +21,12 @@ namespace Avalonia.Controls.Primitives
         protected internal override bool IsItemItsOwnContainerOverride(Control item) => item is PivotHeaderItem;
         protected internal override void PrepareContainerForItemOverride(Control element, object? item, int index)
         {
-            base.PrepareContainerForItemOverride(element, item, index);
-
-            if (element is PivotHeaderItem pivotHeaderItem && item is PivotItem pivotItem)
+            if (element is PivotHeaderItem pivotHeaderItem)
             {
-                if (pivotItem.HeaderTemplate is { } header)
-                    pivotHeaderItem.ContentTemplate = header;
-                else if(ItemTemplate is { } it)
+                if(ItemTemplate is { } it)
                     pivotHeaderItem.ContentTemplate = it;
-
-                if (item is IHeadered headered)
-                {
-                    pivotHeaderItem.Content = headered.Header;
-                }
             }
+            base.PrepareContainerForItemOverride(element, item, index);
         }
 
         /// <inheritdoc/>

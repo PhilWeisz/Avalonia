@@ -1,8 +1,11 @@
+using System;
 using Avalonia.Automation;
 using Avalonia.Automation.Peers;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
+using Avalonia.LogicalTree;
+using Avalonia.Reactive;
 
 namespace Avalonia.Controls
 {
@@ -12,6 +15,8 @@ namespace Avalonia.Controls
     [PseudoClasses(":pressed", ":selected")]
     public class PivotItem : HeaderedContentControl
     {
+        private IDisposable _boundsObservable;
+
         /// <summary>
         /// Initializes static members of the <see cref="PivotItem"/> class.
         /// </summary>
@@ -51,6 +56,42 @@ namespace Avalonia.Controls
                     Header = obj.NewValue;
                 }
             }          
+        }
+
+        protected override void OnAttachedToLogicalTree(LogicalTreeAttachmentEventArgs e)
+        {
+            base.OnAttachedToLogicalTree(e);
+
+            if(Parent is Pivot pivot)
+            {
+                _boundsObservable = pivot.GetObservable(BoundsProperty).Subscribe(ParentBoundsChanged);
+            }
+        }
+
+        protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
+        {
+            base.OnDetachedFromLogicalTree(e);
+
+            _boundsObservable?.Dispose();
+            _boundsObservable = null;
+        }
+
+        private void ParentBoundsChanged(Rect bounds)
+        {
+            InvalidateMeasure();
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            if(Parent is Pivot pivot)
+            {
+                var size = pivot.BorderPart.Bounds.Size;
+
+                base.MeasureOverride(size);
+
+                return size;
+            }
+            return base.MeasureOverride(availableSize);
         }
     }
 }

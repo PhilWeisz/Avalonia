@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mobileSandbox="using:MobileSandbox"
              x:DataType="mobileSandbox:MainView">
-  <Pivot HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+  <Pivot HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40">
     <PivotItem  Header="Hello">
       <TextBlock>This is page 1</TextBlock>
     </PivotItem>

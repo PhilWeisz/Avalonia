@@ -7,11 +7,9 @@
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundLowBrush}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="Padding" Value="8" />
-    <Setter Property="IsVisible" Value="True" />
     <Setter Property="Template">
       <ControlTemplate>
         <ContentPresenter Name="PART_ContentPresenter"
-                          IsVisible="False"
                           Padding="{TemplateBinding Padding}"
                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -23,8 +21,5 @@
                           CornerRadius="{TemplateBinding CornerRadius}" />
       </ControlTemplate>
     </Setter>
-    <Style Selector="^:selected">
-      <Setter Property="IsVisible" Value="True"/>
-    </Style>
   </ControlTheme>
 </ResourceDictionary>
